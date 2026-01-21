@@ -10,6 +10,9 @@ from kyber_py.ml_kem import ML_KEM_512
 import os
 import base64
 
+from dotenv import load_dotenv
+
+load_dotenv()
 now = datetime.utcnow().strftime("%Y%m%d%H%M")
 
 print("TEMPLATE FOLDER:", os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates')))
@@ -105,6 +108,7 @@ def upload_ecg(athlete_id):
         # --- END OF NEW CODE ---
 
     except Exception as e:
+        print(f"line 108 :::: {e}")
         return jsonify({"status": "error", "message": "Kyber key fetch failed", "error": str(e)}), 500
 
     # === Step 2: Load ECG ===
